@@ -1,0 +1,133 @@
+@import 'tailwindcss';
+@import '@nuxt/ui';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme static {
+  --color-brand-50: #e4fcff;
+  --color-brand-100: #c4f7ff;
+  --color-brand-200: #91efff;
+  --color-brand-300: #54e4ff;
+  --color-brand-400: #16d7f5;
+  --color-brand-500: #00b8d4;
+  --color-brand-600: #008da6;
+  --color-brand-700: #006b80;
+  --color-brand-800: #064c5b;
+  --color-brand-900: #093e4b;
+  --color-brand-950: #032a35;
+
+}
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentColor);
+  }
+
+  /* Cursor pointer for Buttons - workaround for Tailwind v4 change */
+  button,
+  [role="button"] {
+    cursor: pointer;
+  }
+}
+
+:root {
+  /* default profit loss colors, can be overridden by custom style */
+  --color-profit: #12bb7b;
+  --color-loss: #ef5350;
+  --font-sans: 'Rajdhani', 'Segoe UI', sans-serif;
+  --font-display: 'Orbitron', 'Rajdhani', sans-serif;
+}
+
+.dark {
+  color-scheme: dark;
+  --ui-bg: #080d16;
+  --ui-bg-muted: #0c1420;
+  --ui-bg-elevated: #111c2a;
+  --ui-bg-accented: #172637;
+  --ui-bg-inverted: #e4fcff;
+  --ui-text: #d4e7ef;
+  --ui-text-muted: #91aab8;
+  --ui-text-dimmed: #6f8998;
+  --ui-text-toned: #b0c5cf;
+  --ui-text-highlighted: #effcff;
+  --ui-text-inverted: #080d16;
+  --ui-border: #1b3a4a;
+  --ui-border-muted: #142b39;
+  --ui-border-accented: #285367;
+  --ui-border-inverted: #b9eefa;
+}
+
+body.ft-theme-transition,
+body.ft-theme-transition *,
+body.ft-theme-transition *:before,
+body.ft-theme-transition *:after {
+    transition:
+        background 750ms ease-in-out,
+        border-color 750ms ease-in-out,
+        background-color 750ms ease-in-out,
+    ;
+    transition-delay: 0 !important;
+}
+
+html {
+    /*  Set the default font size to 14px */
+    font-size: 14px;
+}
+
+body {
+  min-width: 320px;
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.dark body {
+  color: #d4e7ef;
+  background-color: #080d16;
+  background-image:
+    radial-gradient(ellipse at 15% 0%, rgb(0 184 212 / 9%), transparent 38rem),
+    linear-gradient(rgb(22 215 245 / 3%) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(22 215 245 / 3%) 1px, transparent 1px);
+  background-size:
+    auto,
+    32px 32px,
+    32px 32px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display);
+  letter-spacing: 0.025em;
+}
+
+::selection {
+  color: #061018;
+  background: #54e4ff;
+}
+
+.dark #app > header {
+  background: rgb(8 13 22 / 88%);
+  backdrop-filter: blur(12px);
+}
+
+.vue-grid-item {
+    /*  Fix white corners in vue-grid-item. */
+    background-color: unset !important;
+}
